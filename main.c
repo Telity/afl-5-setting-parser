@@ -6,6 +6,7 @@ int main(void) {
     // fprintf(stdout, "Hello, World!\n");
     // fprintf(stderr, "What what\n");
 
+    // fw og fr er "file descriptors" eller "file handles"
     FILE *fw = fopen("hello.txt", "w");
     if (fw == NULL) {
         fprintf(stderr, "Could not open hello.txt\n");

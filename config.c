@@ -11,6 +11,8 @@ struct config_t *read_config(char *filename) {
         return NULL;
     }
 
+    // struct config_t stak_allokeret_config;
+
     struct config_t *config = malloc(sizeof(struct config_t));
     config->count = 0;
 
@@ -25,11 +27,14 @@ struct config_t *read_config(char *filename) {
         // TODO: - Gemme denne allokering i config's lines array
     }
 
-
+    // return &stak_allokeret_config;
     return config;
 }
 
 void print_config(struct config_t *config) {
     // TODO: Loop over linjerne i config-objektet og print dem
     fprintf(stdout, "TODO: Not implemented yet!\n");
+}
+
+void free_config(struct config_t *config) {
 }
