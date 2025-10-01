@@ -12,14 +12,19 @@ struct config_t *read_config(char *filename) {
     }
 
     struct config_t *config = malloc(sizeof(struct config_t));
+    config->count = 0;
 
     // TODO: Loope over linjerne i filen
     char buf1[256];
     while (fgets(buf1, sizeof(buf1), fr) != NULL) {
         fprintf(stdout, "Jeg fik: %s\n", buf1);
+        // TODO: Gemme hver linje i et array af linjer
+        // TODO: - Lave en ny allokering for hver linje
+        // TODO: - Den allokering kender jeg længden af: strlen(buf1)
+        // TODO: - Kopiere indholdet fra buf1 over i den
+        // TODO: - Gemme denne allokering i config's lines array
     }
 
-    // TODO: Gemme hver linje i et array af linjer
 
     return config;
 }
