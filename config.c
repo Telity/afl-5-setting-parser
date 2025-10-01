@@ -4,11 +4,26 @@
 #include <stdlib.h>
 #include <string.h>
 
+struct setting_t *setting_converter(char *line) {
+    // TODO: Allokér en struct setting_t (vha. malloc())
+    struct setting_t *setting = malloc(sizeof(struct setting_t));
+
+    // Jeg skal bygge en lille parser der laver "name = Simon" om til to strings.
+
+    // TODO: Find navnet på setting'en i *line
+    setting->name = NULL; // skal ændres
+
+    // TODO: Find værdien på setting'en i *line
+    setting->value = NULL; // skal ændres
+
+    // TODO: return den setting hvor felterne er sat
+    return setting;
+}
+
 struct config_t *read_config(char *filename) {
-    // TODO: Åbne filen med filnavnet 'filename'
     FILE *fr = fopen(filename, "r");
     if (fr == NULL) {
-        fprintf(stderr, "Could not open hello.txt\n");
+        fprintf(stderr, "Could not open %s\n", filename);
         return NULL;
     }
 
@@ -17,22 +32,13 @@ struct config_t *read_config(char *filename) {
     struct config_t *config = malloc(sizeof(struct config_t));
     config->count = 0;
 
-    // TODO: Loope over linjerne i filen
     char buf1[256];
     while (fgets(buf1, sizeof(buf1), fr) != NULL) {
-        fprintf(stdout, "Jeg fik: %s\n", buf1);
-        // TODO: Gemme hver linje i et array af linjer
-        // TODO: - Lave en ny allokering for hver linje
-        // TODO: - Den allokering kender jeg længden af: strlen(buf1) + 1
+        // fprintf(stdout, "Jeg fik: %s\n", buf1);
         char *buf2 = malloc(strlen(buf1) + 1);
-
-        // TODO: - Kopiere indholdet fra buf1 over i den
         strcpy(buf2, buf1);
-
-        // TODO: - Gemme denne allokering i config's lines array
-        config->lines[config->count] = buf2;
-
-        // TODO: - Forøge tællevariablen med 1 så næste linje bliver gemt rigtigt
+        // TODO: Den her linje virker ikke længere.
+        config->lines[config->count] = buf2; // brug setting_converter()
         config->count += 1;
     }
 
@@ -40,9 +46,16 @@ struct config_t *read_config(char *filename) {
     return config;
 }
 
+void print_setting(struct setting_t *setting) {
+    // TODO: Print en enkelt setting's name og value
+}
+
 void print_config(struct config_t *config) {
-    // TODO: Loop over linjerne i config-objektet og print dem
+    for (int i = 0; i < config->count; i++) {
+        print_setting(config->lines[i]);
+    }
 }
 
 void free_config(struct config_t *config) {
+    // TODO: Den behøver du ikke lave.
 }
