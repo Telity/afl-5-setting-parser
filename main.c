@@ -32,7 +32,8 @@ int main(void) {
         fprintf(stdout, "Jeg fik: %s\n", buf1);
     }
 
-    struct config_t config = read_config("../config.ini");
+    struct config_t *config = read_config("../config.ini");
+    print_config(config);
 
     return 0;
 }
