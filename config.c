@@ -81,15 +81,29 @@ struct setting_t *setting_converter(char *line) {
     int name_len = equal_position - line;
     char *value_start = equal_position + 2;
     
-    int count = 0;
-    while(line[count] != '=' && line[count] != " " ){
-      
+    char *name = malloc(name_len+1); 
+     
+    int count = 0; 
+
+    while(value_start != NULL){
       count ++;
     }
-    char *name = malloc(count);
+
+    char *value = malloc(count+1);
     
-    setting->name = NULL; // skal ændres
-    setting->value = NULL; // skal ændres
+    for(int i = 0; i < name_len;i++ ){
+      name[i] = line[i];
+    }
+    
+    for int i = name_len;i < count; i++){
+      value[i] = line[i];
+    }  
+    
+    setting->name = malloc(strlen(name)+1);
+    setting->value = malloc(strlen(value)+1);
+
+    setting->name = name; // skal ændres
+    setting->value = value; // skal ændres
 
     // TODO: return den setting hvor felterne er sat
     return setting;
