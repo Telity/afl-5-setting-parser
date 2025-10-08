@@ -88,7 +88,7 @@ struct setting_t *setting_converter(char *line) {
       name[i] = line[i];
       name_count++;
     }
-    for(int i = 0, i <= name_count; i++){
+    for(int i = 0; i <= name_count; i++){
       if(name[i] == ' '){
         name[i] = '\0';
       }
@@ -119,13 +119,12 @@ struct setting_t *setting_converter(char *line) {
 
 void print_setting(struct setting_t *setting) {
     // TODO: Print en enkelt setting's name og value
-    printf("the name is :%s, \n the value is :%s \n" setting->name, setting->value);
+    printf("the name is :%s \n the value is :%s \n", setting->name, setting->value);
 }
 
 void print_config(struct config_t *config) {
     for (int i = 0; i < config->count; i++) {
-        printf("Setting: %s", config->lines[i]);
-        // print_setting(config->lines[i]);
+        print_setting(config->lines[i]);
     }
 }
 
