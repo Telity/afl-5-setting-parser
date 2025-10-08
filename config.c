@@ -72,46 +72,40 @@ struct setting_t *setting_converter(char *line) {
     // det er din opgave at vælge en løsning her.
 
     // TODO: Find navnet på setting'en i *line
-    // TODO: Find værdien på setting'en i *line
-    
-    //char *name = malloc(strlen(line)+1);
-    //char *value = malloc(strlen(line)+1);
-    
     char *equal_position = strchr(line, '=');
     int name_len = equal_position - line;
-    char *value_start = equal_position + 2;
-    
-    char *name = malloc(name_len+1); 
-    
-    int name_count = 0; 
-    for(int i = 0; line[i] != '='; i++){
-      name[i] = line[i];
-      name_count++;
+    char *name = malloc(name_len + 1);
+
+    int name_count = 0;
+    for (int i = 0; line[i] != '='; i++) {
+        name[i] = line[i];
+        name_count++;
     }
-    for(int i = 0; i <= name_count; i++){
-      if(name[i] == ' '){
-        name[i] = '\0';
-      }
-    }  
+
+    for (int i = 0; i <= name_count; i++) {
+        if (name[i] == ' ') {
+            name[i] = '\0';
+        }
+    }
     name[name_count] = '\0';
 
-    int count = 0; 
+    // TODO: Find værdien på setting'en i *line
+    char *value_start = equal_position + 2;
+    int count = 0;
 
-    while(value_start[count] != '\0' && value_start[count] !='\n'){
-      count ++;
+    while (value_start[count] != '\0' && value_start[count] != '\n') {
+        count++;
     }
 
-    char *value = malloc(count+1);
-    
-    for (int i = 0; i < count; i++){
-      value[i] = value_start[i];
-    } 
-    value[count] = '\0';
-    //setting->name = malloc(strlen(name)+1);
-    //setting->value = malloc(strlen(value)+1);
+    char *value = malloc(count + 1);
 
-    setting->name = name; // skal ændres
-    setting->value = value; // skal ændres
+    for (int i = 0; i < count; i++) {
+        value[i] = value_start[i];
+    }
+    value[count] = '\0';
+
+    setting->name = name;
+    setting->value = value;
 
     // TODO: return den setting hvor felterne er sat
     return setting;
