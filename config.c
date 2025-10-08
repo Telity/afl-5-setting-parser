@@ -70,8 +70,18 @@ struct setting_t *setting_converter(char *line) {
     // name-delen slutter og at value-delen begynder. Skal man lave to allokeringer
     // eller findes der en måde at genbruge `line`? Der findes flere løsninger, og
     // det er din opgave at vælge en løsning her.
+    
+    //char *name = malloc(strlen(line)+1);
+    //char *value = malloc(strlen(line)+1);
 
     // TODO: Find navnet på setting'en i *line
+    
+    //brugte strchr for at hjælpe med at splitte string op  
+    //laver en pointer til det punkt som har '=', og derfra kan vi så 
+    //bruge den til at finde det før og det efter, ved hjælp af pointer artimics
+    //det er måske ikke den helt rigtige tilgang, men fandt den i min søgnign på måder 
+    //at håndtere string splitning i C, så prøvede den, håber det er okay. 
+    
     char *equal_position = strchr(line, '=');
     int name_len = equal_position - line;
     char *name = malloc(name_len + 1);
