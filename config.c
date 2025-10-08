@@ -73,7 +73,21 @@ struct setting_t *setting_converter(char *line) {
 
     // TODO: Find navnet på setting'en i *line
     // TODO: Find værdien på setting'en i *line
-
+    
+    //char *name = malloc(strlen(line)+1);
+    //char *value = malloc(strlen(line)+1);
+    
+    char *equal_position = strchr(line, '=');
+    int name_len = equal_position - line;
+    char *value_start = equal_position + 2;
+    
+    int count = 0;
+    while(line[count] != '=' && line[count] != " " ){
+      
+      count ++;
+    }
+    char *name = malloc(count);
+    
     setting->name = NULL; // skal ændres
     setting->value = NULL; // skal ændres
 
