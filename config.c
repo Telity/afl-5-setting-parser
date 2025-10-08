@@ -85,13 +85,13 @@ struct setting_t *setting_converter(char *line) {
      
     int count = 0; 
 
-    while(value_start != NULL){
+    while(value_start[count] != NULL){
       count ++;
     }
 
     char *value = malloc(count+1);
     
-    for(int i = 0; i < name_len;i++ ){
+    for(int i = 0; line[i] != '=' && line[i] != ' ';i++ ){
       name[i] = line[i];
     }
     
@@ -99,8 +99,8 @@ struct setting_t *setting_converter(char *line) {
       value[i] = line[i];
     }  
     
-    setting->name = malloc(strlen(name)+1);
-    setting->value = malloc(strlen(value)+1);
+    //setting->name = malloc(strlen(name)+1);
+    //setting->value = malloc(strlen(value)+1);
 
     setting->name = name; // skal ændres
     setting->value = value; // skal ændres
