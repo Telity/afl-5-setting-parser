@@ -52,7 +52,7 @@ struct config_t *read_config(char *filename) {
         // Efter `buf2` er allokeret og config-linjen er kopieret ind, skal
         // pointeren gemmes i vores datastruktur, så den ikke går tabt. Den
         // gemmes på plads `config->count` som er seneste ubrugte plads.
-        config->lines[config->count] = buf2; // brug setting_converter()
+        config->lines[config->count] = setting_converter(buf2); // brug setting_converter()
 
         // `count` forøges så næste config-linjes buffer gemmes på næste plads.
         config->count += 1;
@@ -82,28 +82,27 @@ struct setting_t *setting_converter(char *line) {
     char *value_start = equal_position + 2;
     
     char *name = malloc(name_len+1); 
-     
+    
+    int name_count = 0; 
+    for(int i = 0; line[i] != '='; i++){
+      name[i] = line[i];
+      name_count++;
+    }
+    
+    name[name_count] = '\0';
+
     int count = 0; 
 
-    while(value_start[count] != '\0'){
+    while(value_start[count] != '\0' && value_start[count] !='\n'){
       count ++;
     }
 
     char *value = malloc(count+1);
     
-    for(int i = 0; line[i] != '=';i++ ){
-      name[i] = line[i];
-        if(name[i] == ' '){
-          name[i] = '\0';
-        }
-    }
-    name[strlen(name)+1] = '\0';
-    
-    
-    for int i = 0;i < count; i++){
+    for (int i = 0; i < count; i++){
       value[i] = value_start[i];
-    }  
-    value[strlen(value)+1] = '\0';
+    } 
+    value[count] = '\0';
     //setting->name = malloc(strlen(name)+1);
     //setting->value = malloc(strlen(value)+1);
 
